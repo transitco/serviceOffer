@@ -1,13 +1,26 @@
-require('dotenv').config();
-const express = require('express');
-const server = express();
-const cors = require('cors');
+var express = require('express');
+var graphqlHTTP = require('express-graphql');
+var { buildSchema } = require('graphql');
 
-server.use(express.json());
-server.use(cors());
+// Construct a schema, using GraphQL schema language
+var service = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
 
-server.get("/", (req, res) => {
-    res.send("Hello World!");
-})
+// The root provides a resolver function for each API endpoint
+var root = {
+  hello: () => {
+    return 'Hello world!';
+  },
+};
 
-server.listen(3000, () => console.log("Server started!"));
+var app = express();
+app.use('/graphql', graphqlHTTP({
+  schema: service,
+  rootValue: root,
+  graphiql: true,
+}));
+app.listen(4000);
+console.log('Running a GraphQL API server at http://localhost:4000/graphql');
