@@ -1,6 +1,15 @@
 var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graphql');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://mongo:27017/serviceofferdb', {useNewUrlParser: true, useUnifiedTopology: true});
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+});
 
 var serviceDefs = buildSchema(`
 schema {

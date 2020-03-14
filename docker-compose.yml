@@ -11,7 +11,7 @@ services:
       - mongo
 
   mongo:
-    container_name: graphqlmongo
+    container_name: mongo
     image: mongo
     volumes:
       - ./data:/data/db
