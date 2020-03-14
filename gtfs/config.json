@@ -1,0 +1,12 @@
+{
+    "mongoUrl": "mongodb://mongo:27017/gtfs",
+    "agencies": [
+      {
+        "agency_key": "exo_gtfs",
+        "url": "https://exo.quebec/xdata/trains/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      }
+    ]
+  }
