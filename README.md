@@ -1,17 +1,23 @@
-# Run serviceoffer container alone
+# ServiceOffer
 
-docker build . -t serviceoffer
-docker run -p 4000:4000 serviceoffer
+## Run serviceoffer container alone
 
-## Test
+`docker build . -t serviceoffer`
+
+`docker run -p 4000:4000 serviceoffer`
+
+### Test single container
 
 <http://localhost:4000/graphql>
 
-# Run serviceoffer completly
+## Run serviceoffer completly
 
-docker-compose build
-docker-compose up
+`docker-compose build`
 
-## Test 
+`docker-compose up`
+
+### Test app
 
 MongoDB admin: <http://localhost:8082/>
+
+Connection URI: mongodb://mongo:27017/serviceofferdb
