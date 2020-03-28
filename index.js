@@ -1,6 +1,5 @@
 var express = require('express');
-var graphqlHTTP = require('express-graphql');
-var { buildSchema } = require('graphql');
+const { GraphQLServer } = require('graphql-yoga')
 var gtfs = require('gtfs');
 const config = require('./gtfs/config.json');
 var mongoose = require('mongoose');
@@ -13,130 +12,39 @@ db.once('open', function() {
   // we're connected!
 });
 
+const resolvers = {
+  Query: {
+    routes: async () => {
+      const test_route = await gtfs.getRoutes({
+        agency_key: 'exo_gtfs',
+        route_id: '6'
+      });
+      console.log(test_route);
+      console.log('ici1');
+      return test_route[0].route_short_name;
+      },
+  },
+}
+
+const server = new GraphQLServer({
+  typeDefs: './graphql/schemas/schema.graphql',
+  resolvers,
+})
+
 gtfs.import(config)
 .then(() => {
   console.log('Import Successful');
-  return mongoose.connection.close();
+  async () => {
+    const test_route = await gtfs.getRoutes({
+      agency_key: 'exo_gtfs',
+      route_id: '6'
+    });
+    console.log(test_route);
+    console.log('ici2');
+    }
 })
 .catch(err => {
   console.error(err);
 });
 
-var serviceDefs = buildSchema(`
-schema {
-  query: rootQuery
-}
-
-type feed {
-  feed_id: String
-  feed_publisher_name: String
-  feed_publisher_url: String
-  feed_lang: String
-  feed_version: String
-  routes(route_id: [String]): [route]
-  route_count: Long
-  stops: [stop]
-  stop_count: Long
-}
-
-# GeoJSON
-scalar GeoJSON
-
-# Long type
-scalar Long
-
-type pattern {
-  pattern_id: String
-  name: String
-  route_id: String
-  stops: [stop]
-  stop_count: Long
-  geometry: GeoJSON
-  trips(begin_time: Long, end_time: Long): [trip]
-  trip_count: Long
-}
-
-type rootQuery {
-  routes(route_id: [String], feed_id: [String]): [route]
-  stops(feed_id: [String], stop_id: [String], lat: Float, lon: Float, radius: Float, max_lat: Float, max_lon: Float, min_lat: Float, min_lon: Float): [stop]
-  feeds(feed_id: [String]): [feed]
-  patterns(pattern_id: [String]): [pattern]
-  trips(trip_id: [String], route_id: [String]): [trip]
-  stopTimes(stop_id: [String], trip_id: [String]): [stopTime]
-}
-
-type route {
-  route_id: String
-  route_short_name: String
-  route_long_name: String
-  route_desc: String
-  route_url: String
-  route_color: String
-  route_text_color: String
-  trips: [trip]
-  trip_count: Long
-  patterns(stop_id: [String]): [pattern]
-  pattern_count: Long
-  stats(date: String, from: Long, to: Long): stats
-}
-
-type stats {
-  headway: Float
-}
-
-type stop {
-  stop_id: String
-  stop_name: String
-  stop_code: String
-  stop_desc: String
-  stop_lon: Float
-  stop_lat: Float
-  zone_id: String
-  stop_url: String
-  stop_timezone: String
-  stop_times(date: String, from: Long, to: Long): [stopTime]
-  routes(route_id: [String]): [route]
-  stats(date: String, from: Long, to: Long): stats
-  transferPerformance(date: String, from: Long, to: Long): [transferPerformance]
-}
-
-type stopTime {
-  arrival_time: Int
-  departure_time: Int
-  stop_sequence: Int
-  stop_id: String
-  stop_headsign: String
-  shape_dist_traveled: Float
-  trip(date: String, from: Long, to: Long): trip
-}
-
-type transferPerformance {
-  fromRoute: String
-  toRoute: String
-  bestCase: Int
-  worstCase: Int
-  typicalCase: Int
-}
-
-type trip {
-  trip_id: String
-  trip_headsign: String
-  trip_short_name: String
-  block_id: String
-  direction_id: Int
-  route_id: String
-  pattern: pattern
-  stop_times(stop_id: [String]): [stopTime]
-  start_time: Int
-  duration: Int
-}
-
-`);
-
-var app = express();
-app.use('/graphql', graphqlHTTP({
-  schema: serviceDefs,
-  graphiql: true,
-}));
-app.listen(4000);
-console.log('Running a GraphQL API server at http://localhost:4000/graphql');
+server.start(() => console.log(`GraphQL API Server is running on http://localhost:4000`))

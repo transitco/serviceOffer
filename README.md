@@ -1,5 +1,10 @@
 # ServiceOffer
 
+## Required
+1. Docker
+2. Docker Compose
+3. npm install prisma2 --save-dev
+
 ## Run serviceoffer container alone
 
 `docker build . -t serviceoffer`
@@ -14,7 +19,11 @@
 
 `docker-compose build`
 
-`docker-compose up`
+`docker-compose up -d`
+
+### Rebuild and up only serviceoffer container
+
+`docker-compose up -d --build serviceoffer`
 
 ### Test app
 
