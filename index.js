@@ -12,20 +12,6 @@ db.once('open', function() {
   // we're connected!
 });
 
-const resolvers1 = {
-  Query: {
-    routes: async () => {
-      const test_route = await gtfs.getRoutes({
-        agency_key: 'exo_gtfs',
-        route_id: '6'
-      });
-      console.log(test_route);
-      console.log('ici1');
-      return test_route[0].route_short_name;
-      },
-  },
-}
-
 const resolvers = {
   Query: {
     routes: async () => {
@@ -34,7 +20,6 @@ const resolvers = {
         route_id: '6'
       });
       console.log(test_route);
-      console.log('ici1');
       return test_route;
       },
   },
