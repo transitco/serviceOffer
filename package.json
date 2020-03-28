@@ -16,9 +16,6 @@
     "graphql-yoga": "^1.18.3",
     "mongoose": "^5.9.4",
     "nodemon": "^2.0.2",
-    "gtfs": "^1.9.3",
-    "prisma-client-lib": "1.34.10"
-  },
-  "devDependencies": {
+    "gtfs": "^1.9.3"
   }
 }

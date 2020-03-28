@@ -12,7 +12,7 @@ db.once('open', function() {
   // we're connected!
 });
 
-const resolvers = {
+const resolvers1 = {
   Query: {
     routes: async () => {
       const test_route = await gtfs.getRoutes({
@@ -26,6 +26,26 @@ const resolvers = {
   },
 }
 
+const resolvers = {
+  Query: {
+    routes: async () => {
+      const test_route = await gtfs.getRoutes({
+        agency_key: 'exo_gtfs',
+        route_id: '6'
+      });
+      console.log(test_route);
+      console.log('ici1');
+      return test_route;
+      },
+  },
+  // 3
+  Route: {
+    route_id: (parent) => parent.route_id,
+    route_short_name: (parent) => parent.route_short_name,
+    route_long_name: (parent) => parent.route_long_name,
+  }
+}
+
 const server = new GraphQLServer({
   typeDefs: './graphql/schemas/schema.graphql',
   resolvers,
@@ -34,14 +54,6 @@ const server = new GraphQLServer({
 gtfs.import(config)
 .then(() => {
   console.log('Import Successful');
-  async () => {
-    const test_route = await gtfs.getRoutes({
-      agency_key: 'exo_gtfs',
-      route_id: '6'
-    });
-    console.log(test_route);
-    console.log('ici2');
-    }
 })
 .catch(err => {
   console.error(err);

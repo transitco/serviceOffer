@@ -3,7 +3,6 @@
 ## Required
 1. Docker
 2. Docker Compose
-3. npm install prisma2 --save-dev
 
 ## Run serviceoffer container alone
 
