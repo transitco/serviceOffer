@@ -3,6 +3,7 @@
 ## Required
 1. Docker
 2. Docker Compose
+3. Local container image of https://github.com/ChronoSAEIV/GTFSloader
 
 ## Run serviceoffer container alone
 
@@ -29,3 +30,13 @@
 MongoDB admin: <http://localhost:8082/>
 
 Connection URI: mongodb://mongo:27017/serviceofferdb
+
+```
+query {
+  routes(agency_key: "exo_gtfs", route_id: "6") {
+    route_id
+    route_short_name
+    route_text_color
+  }
+}
+```

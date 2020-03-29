@@ -1,8 +1,8 @@
-var express = require('express');
 const { GraphQLServer } = require('graphql-yoga')
 var gtfs = require('gtfs');
 const config = require('./gtfs/config.json');
 var mongoose = require('mongoose');
+//const resolvers = require('./graphql/resolvers/resolvers.js')
 
 mongoose.connect('mongodb://mongo:27017/gtfs', {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -35,13 +35,5 @@ const server = new GraphQLServer({
   typeDefs: './graphql/schemas/schema.graphql',
   resolvers,
 })
-
-gtfs.import(config)
-.then(() => {
-  console.log('Import Successful');
-})
-.catch(err => {
-  console.error(err);
-});
 
 server.start(() => console.log(`GraphQL API Server is running on http://localhost:4000`))

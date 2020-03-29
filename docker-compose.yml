@@ -10,6 +10,13 @@ services:
     links:
       - mongo
 
+  gtfsloader:
+    container_name: gtfsloader
+    image: gtfsloader
+    restart: always
+    links:
+      - mongo
+
   mongo:
     container_name: mongo
     image: mongo
