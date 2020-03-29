@@ -10,10 +10,30 @@ services:
     links:
       - mongo
 
-  gtfsloader:
-    container_name: gtfsloader
+  exogtfsloader:
+    container_name: exogtfsloader
     image: gtfsloader
     restart: always
+    volumes:
+      - ./gtfs/exo_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+    links:
+      - mongo
+
+  rtlgtfsloader:
+    container_name: rtlgtfsloader
+    image: gtfsloader
+    restart: always
+    volumes:
+      - ./gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+    links:
+      - mongo
+
+  stmgtfsloader:
+    container_name: stmgtfsloader
+    image: gtfsloader
+    restart: always
+    volumes:
+      - ./gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
     links:
       - mongo
 
