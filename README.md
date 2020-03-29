@@ -33,10 +33,20 @@ Connection URI: mongodb://mongo:27017/serviceofferdb
 
 ```
 query {
-  routes(agency_key: "exo_gtfs", route_id: "6") {
+  test_stl: routes(agency_key: "rtl_gtfs", route_id: "889") {
     route_id
     route_short_name
     route_text_color
+    route_long_name
+  }
+  test_exo: routes(agency_key: "exo_gtfs", route_id: "6") {
+    route_text_color
+    route_long_name
+  }
+  test_stm: routes(agency_key: "stm_gtfs", route_id: "445") {
+    route_id
+    route_short_name
   }
 }
+
 ```
