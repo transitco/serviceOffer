@@ -1,0 +1,13 @@
+{
+    "mongoUrl": "mongodb://mongo:27017/gtfs",
+    "agencies": [
+      {
+        "agency_key": "stm_gtfs",
+        "url": "http://stm.info/sites/default/files/gtfs/gtfs_stm.zip",
+        "exclude": [
+          "shapes",
+          "stoptimes"
+        ]
+      }
+    ]
+  }
