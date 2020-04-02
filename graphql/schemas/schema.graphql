@@ -1,5 +1,5 @@
-type feed {
-  feed_id: String
+type agency {
+  agency_key: String
   feed_publisher_name: String
   feed_publisher_url: String
   feed_lang: String
@@ -28,12 +28,11 @@ type pattern {
 }
 
 type Query {
-  routes(agency_key: [String], route_id: [String]): [route]
-  stops(feed_id: [String], stop_id: [String], lat: Float, lon: Float, radius: Float, max_lat: Float, max_lon: Float, min_lat: Float, min_lon: Float): [stop]
-  feeds(feed_id: [String]): [feed]
-  patterns(pattern_id: [String]): [pattern]
-  trips(trip_id: [String], route_id: [String]): [trip]
-  stopTimes(stop_id: [String], trip_id: [String]): [stopTime]
+  agencies: [agency]
+  routes(agency_key: [String]): [route]
+  trips(agency_key: [String], route_id: [String],direction_id: Int): [trip]
+  stopTimes(agency_key: [String], route_id: [String], trip_id: [String]): [stopTime]
+  stops(agency_key: [String], route_id: [String], trip_id: [String], stop_id: [String]): [stop]
 }
 
 type route {
@@ -51,8 +50,27 @@ type route {
   stats(date: String, from: Long, to: Long): stats
 }
 
-type stats {
-  headway: Float
+type trip {
+  trip_id: String
+  trip_headsign: String
+  trip_short_name: String
+  block_id: String
+  direction_id: Int
+  route_id: String
+  pattern: pattern
+  stop_times(stop_id: [String]): [stopTime]
+  start_time: Int
+  duration: Int
+}
+
+type stopTime {
+  arrival_time: Int
+  departure_time: Int
+  stop_sequence: Int
+  stop_id: String
+  stop_headsign: String
+  shape_dist_traveled: Float
+  trip(date: String, from: Long, to: Long): trip
 }
 
 type stop {
@@ -71,14 +89,8 @@ type stop {
   transferPerformance(date: String, from: Long, to: Long): [transferPerformance]
 }
 
-type stopTime {
-  arrival_time: Int
-  departure_time: Int
-  stop_sequence: Int
-  stop_id: String
-  stop_headsign: String
-  shape_dist_traveled: Float
-  trip(date: String, from: Long, to: Long): trip
+type stats {
+  headway: Float
 }
 
 type transferPerformance {
@@ -87,17 +99,4 @@ type transferPerformance {
   bestCase: Int
   worstCase: Int
   typicalCase: Int
-}
-
-type trip {
-  trip_id: String
-  trip_headsign: String
-  trip_short_name: String
-  block_id: String
-  direction_id: Int
-  route_id: String
-  pattern: pattern
-  stop_times(stop_id: [String]): [stopTime]
-  start_time: Int
-  duration: Int
 }

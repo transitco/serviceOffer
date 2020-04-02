@@ -27,15 +27,14 @@ services:
       - ./gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
     links:
       - mongo
-
-  stmgtfsloader:
-    container_name: stmgtfsloader
-    image: gtfsloader
-    restart: always
-    volumes:
-      - ./gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
-    links:
-      - mongo
+#  stmgtfsloader:
+#    container_name: stmgtfsloader
+#    image: gtfsloader
+#    restart: always
+#    volumes:
+#      - ./gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+#    links:
+#      - mongo
 
   mongo:
     container_name: mongo

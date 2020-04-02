@@ -50,3 +50,18 @@ query {
 }
 
 ```
+
+```
+query {
+  routes(agency_key: "exo_gtfs") {
+    route_long_name
+    trips {
+      trip_id
+      trip_headsign
+      stop_times {
+        stop_id
+      }
+    }
+  }
+}
+```
