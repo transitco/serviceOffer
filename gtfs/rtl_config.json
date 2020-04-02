@@ -1,0 +1,12 @@
+{
+    "mongoUrl": "mongodb://mongo:27017/gtfs",
+    "agencies": [
+      {
+        "agency_key": "rtl_gtfs",
+        "url": "https://www.rtl-longueuil.qc.ca/transit/latestfeed/RTL.zip",
+        "exclude": [
+          "shapes"
+        ]
+      }
+    ]
+  }
