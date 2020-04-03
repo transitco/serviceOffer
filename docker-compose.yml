@@ -27,6 +27,7 @@ services:
       - ./gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
     links:
       - mongo
+      
 #  stmgtfsloader:
 #    container_name: stmgtfsloader
 #    build: https://github.com/ChronoSAEIV/GTFSloader.git

@@ -13,7 +13,7 @@
 
 ### Test single container
 
-<http://localhost:4000/graphql>
+<http://localhost:4000>
 
 ## Run serviceoffer completly
 
