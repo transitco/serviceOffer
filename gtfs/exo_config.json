@@ -2,8 +2,92 @@
     "mongoUrl": "mongodb://mongo:27017/gtfs",
     "agencies": [
       {
-        "agency_key": "exo_gtfs",
+        "agency_key": "exo_citcrc_gtfs",
+        "url": "https://exo.quebec/xdata/citcrc/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_cithsl_gtfs",
+        "url": "https://exo.quebec/xdata/cithsl/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_citla_gtfs",
+        "url": "https://exo.quebec/xdata/citla/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_citpi_gtfs",
+        "url": "https://exo.quebec/xdata/citpi/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_citlr_gtfs",
+        "url": "https://exo.quebec/xdata/citlr/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_citrous_gtfs",
+        "url": "https://exo.quebec/xdata/citrous/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_citsv_gtfs",
+        "url": "https://exo.quebec/xdata/citsv/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_citso_gtfs",
+        "url": "https://exo.quebec/xdata/citso/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_citvr_gtfs",
+        "url": "https://exo.quebec/xdata/citvr/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_mrclasso_gtfs",
+        "url": "https://exo.quebec/xdata/mrclasso/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_mrclm_gtfs",
+        "url": "https://exo.quebec/xdata/mrclm/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_trains_gtfs",
         "url": "https://exo.quebec/xdata/trains/google_transit.zip",
+        "exclude": [
+          "shapes"
+        ]
+      },
+      {
+        "agency_key": "exo_omitsju_gtfs",
+        "url": "https://exo.quebec/xdata/omitsju/google_transit.zip",
         "exclude": [
           "shapes"
         ]
