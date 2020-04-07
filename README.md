@@ -29,7 +29,7 @@
 
 MongoDB admin: <http://localhost:8082/>
 
-Connection URI: mongodb://mongo:27017/serviceofferdb
+Connection URI: mongodb://mongo:27017/gtfs
 
 ```
 query {
