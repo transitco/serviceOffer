@@ -8,36 +8,22 @@ const resolvers = {
       return fetchedagencies;
     },
     routes: async (parent, args, ctx, info) => {
-      const fetchedroutes = await gtfs.getRoutes({
-        agency_key: args.agency_key
-      });
+      const fetchedroutes = await gtfs.getRoutes(args);
       console.log(fetchedroutes);
       return fetchedroutes;
       },
     trips: async (parent, args, ctx, info) => {
-      const fetchedtrips = await gtfs.getTrips({
-        agency_key: args.agency_key,
-        route_id: args.route_id,
-      });
+      const fetchedtrips = await gtfs.getTrips(args);
       console.log(fetchedtrips);
       return fetchedtrips;
       },
     stopTimes: async (parent, args, ctx, info) => {
-      const fetchedstoptimes = await gtfs.getRoutes({
-        agency_key: args.agency_key,
-        route_id: args.route_id,
-        trip_id: args.trip_id
-      });
+      const fetchedstoptimes = await gtfs.getRoutes(args);
       console.log(fetchedstoptimes);
       return fetchedstoptimes;
       },
     stops: async (parent, args, ctx, info) => {
-      const fetchedstops = await gtfs.getStops({
-        agency_key: args.agency_key,
-        route_id: args.route_id,
-        trip_id: args.trip_id,
-        stop_times: args.stop_times
-      });
+      const fetchedstops = await gtfs.getStops(args);
       console.log(fetchedstops);
       return fetchedstops;
       },
