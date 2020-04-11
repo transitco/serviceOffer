@@ -1,20 +1,9 @@
 type Query {
-  agencies: [Agency]
-  routes(agency_key: [String]): [Route]
-  trips(agency_key: [String], route_id: [String]): [Trip]
-  stopTimes(agency_key: [String], route_id: [String], trip_id: [String]): [StopTime]
+  agencies(agency_key: [String], agency_timezone: [String]): [Agency]
+  routes(agency_key: [String], route_id: [String], stop_id: [String]): [Route]
+  trips(agency_key: [String], route_id: [String], direction_id: [String], service_id: [String]): [Trip]
+  stopTimes(agency_key: [String], route_id: [String], trip_id: [String], stop_id: [String], direction_id: [String], service_id: [String]): [StopTime]
   stops(agency_key: [String], route_id: [String], trip_id: [String], stop_times: [String]): [Stop]
-}
-
-type Agency {
-  agency_key: String
-  agency_id: String
-  agency_name: String
-  agency_url: String
-  agency_timezone: String
-  agency_lang: [String]
-  agency_phone: [String]
-  routes: [Route]
 }
 
 type Feed_info {
@@ -26,6 +15,17 @@ type Feed_info {
   feed_version: String
   feed_contact_email: String
   feed_contact_url: String
+}
+
+type Agency {
+  agency_key: String
+  agency_id: String
+  agency_name: String
+  agency_url: String
+  agency_timezone: String
+  agency_lang: [String]
+  agency_phone: [String]
+  routes: [Route]
 }
 
 type Route {
@@ -53,7 +53,7 @@ type Trip {
   shape_id: Int
   wheelchair_accessible: Int
   bikes_allowed: Int
-  shapes: [Shape]
+  shapes(agency_key: [String],route_id: [String], trip_id: [String], direction_id: [String], service_id: [String]): [Shape]
   stop_times: [StopTime]
   frequencies: [Frequency]
 }
