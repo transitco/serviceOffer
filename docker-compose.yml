@@ -1,4 +1,4 @@
-version: "2"
+version: "3.3"
 
 services:
   serviceoffer:
@@ -12,7 +12,7 @@ services:
 
   exogtfsloader:
     container_name: exogtfsloader
-    build: https://github.com/ChronoSAEIV/GTFSloader.git
+    build: https://github.com/transitco/GTFSloader.git
     restart: always
     volumes:
       - ./gtfs/exo_config.json:/usr/src/app/gtfsloader/gtfs/config.json
@@ -21,27 +21,27 @@ services:
 
   rtlgtfsloader:
     container_name: rtlgtfsloader
-    build: https://github.com/ChronoSAEIV/GTFSloader.git
+    build: https://github.com/transitco/GTFSloader.git
     restart: always
     volumes:
       - ./gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
     links:
       - mongo
       
-#  stmgtfsloader:
-#    container_name: stmgtfsloader
-#    build: https://github.com/ChronoSAEIV/GTFSloader.git
-#    restart: always
-#    volumes:
-#      - ./gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
-#    links:
-#      - mongo
+  stmgtfsloader:
+    container_name: stmgtfsloader
+    build: https://github.com/transitco/GTFSloader.git
+    restart: always
+    volumes:
+      - ./gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+    links:
+      - mongo
 
   mongo:
     container_name: mongo
     image: mongo
     volumes:
-      - data:/data/db
+      - ./data:/data/db
     ports:
       - "27017:27017"
 
