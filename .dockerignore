@@ -1,0 +1,11 @@
+.env
+.github
+coverage/
+data/
+node_modules/
+.gitignore
+.jshintrc
+CODE_OF_CONDUCT.md
+docker-compose*
+Dockerfile*
+README.md

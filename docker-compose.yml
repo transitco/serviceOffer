@@ -5,6 +5,10 @@ services:
     container_name: serviceoffer
     restart: always
     build: .
+    command: npm run dev
+    volumes:
+      - .:/usr/src/app/serviceoffer
+      - /usr/src/app/node_modules
     ports:
       - "4000:4000"
     links:
