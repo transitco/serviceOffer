@@ -1,6 +1,4 @@
-.env
 .github
-coverage/
 data/
 node_modules/
 .gitignore
