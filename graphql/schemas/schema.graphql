@@ -1,102 +1,114 @@
-type agency {
-  agency_key: String
+type Query {
+  agencies(agency_key: [String], agency_timezone: [String]): [Agency]
+  routes(agency_key: [String], route_id: [String], stop_id: [String]): [Route]
+  trips(agency_key: [String], route_id: [String], direction_id: [String], service_id: [String]): [Trip]
+  stopTimes(agency_key: [String], route_id: [String], trip_id: [String], stop_id: [String], direction_id: [String], service_id: [String]): [StopTime]
+  stops(agency_key: [String], route_id: [String], trip_id: [String], stop_times: [String]): [Stop]
+}
+
+type Feed_info {
   feed_publisher_name: String
   feed_publisher_url: String
   feed_lang: String
+  feed_start_date: String
+  feed_end_date: String
   feed_version: String
-  routes(route_id: [String]): [route]
-  route_count: Long
-  stops: [stop]
-  stop_count: Long
+  feed_contact_email: String
+  feed_contact_url: String
 }
 
-# GeoJSON
-scalar GeoJSON
+type Agency {
+  agency_key: String
+  agency_id: String
+  agency_name: String
+  agency_url: String
+  agency_timezone: String
+  agency_lang: [String]
+  agency_phone: [String]
+  routes: [Route]
+}
 
-# Long type
-scalar Long
-
-type pattern {
-  pattern_id: String
-  name: String
+type Route {
   route_id: String
-  stops: [stop]
-  stop_count: Long
-  geometry: GeoJSON
-  trips(begin_time: Long, end_time: Long): [trip]
-  trip_count: Long
-}
-
-type Query {
-  agencies: [agency]
-  routes(agency_key: [String]): [route]
-  trips(agency_key: [String], route_id: [String],direction_id: Int): [trip]
-  stopTimes(agency_key: [String], route_id: [String], trip_id: [String]): [stopTime]
-  stops(agency_key: [String], route_id: [String], trip_id: [String], stop_id: [String]): [stop]
-}
-
-type route {
-  route_id: String
+  agency_id: String
   route_short_name: String
   route_long_name: String
   route_desc: String
+  route_type: String
   route_url: String
   route_color: String
   route_text_color: String
-  trips: [trip]
-  trip_count: Long
-  patterns(stop_id: [String]): [pattern]
-  pattern_count: Long
-  stats(date: String, from: Long, to: Long): stats
+  route_sort_order: Int
+  trips: [Trip]
 }
 
-type trip {
+type Trip {
+  route_id: String
+  service_id: String
   trip_id: String
   trip_headsign: String
   trip_short_name: String
-  block_id: String
   direction_id: Int
-  route_id: String
-  pattern: pattern
-  stop_times(stop_id: [String]): [stopTime]
-  start_time: Int
-  duration: Int
+  block_id: String
+  shape_id: Int
+  wheelchair_accessible: Int
+  bikes_allowed: Int
+  shapes(agency_key: [String],route_id: [String], trip_id: [String], direction_id: [String], service_id: [String]): [Shape]
+  stop_times: [StopTime]
+  frequencies: [Frequency]
 }
 
-type stopTime {
+type Shape {
+  shape_id: Int
+  shape_pt_lat: Int
+  shape_pt_lon: String
+  shape_pt_sequence: Int
+  shape_dist_traveled: Int
+}
+
+type StopTime {
+  trip_id: Int
   arrival_time: Int
   departure_time: Int
-  stop_sequence: Int
   stop_id: String
+  stop_sequence: Int
   stop_headsign: String
+  pickup_type: Int
+  drop_off_type: Int
   shape_dist_traveled: Float
-  trip(date: String, from: Long, to: Long): trip
+  timepoint: Int
+  stops: [Stop]
 }
 
-type stop {
+type Stop {
   stop_id: String
-  stop_name: String
   stop_code: String
+  stop_name: String
   stop_desc: String
-  stop_lon: Float
   stop_lat: Float
+  stop_lon: Float
   zone_id: String
   stop_url: String
+  location_type: Int
+  parent_station: Int
   stop_timezone: String
-  stop_times(date: String, from: Long, to: Long): [stopTime]
-  routes(route_id: [String]): [route]
-  stats(date: String, from: Long, to: Long): stats
-  transferPerformance(date: String, from: Long, to: Long): [transferPerformance]
+  wheelchair_boarding: Int
+  level_id: Int
+  platform_code: String
+  transfers: [Transfer]
 }
 
-type stats {
-  headway: Float
+type Transfer {
+  from_stop_id: Int
+  to_stop_id: Int
+  transfer_type: String
+  min_transfer_time: Int
 }
 
-type transferPerformance {
-  fromRoute: String
-  toRoute: String
-  bestCase: Int
-  worstCase: Int
-  typicalCase: Int
+type Frequency {
+  trip_id: Int
+  start_time: Int
+  end_time: String
+  headway_secs: Int
+  exact_times: Int
 }
