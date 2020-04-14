@@ -1,23 +1,14 @@
 # ServiceOffer
 
+Retrieve GTFS data with a GraphQL query (nodejs graphql-yoga) from a database (npm gtfs + mongoose + MongoDB)
+
+Use case is made with Montreal public transit agencies: exo, RTL and STM
+
 ## Required
 1. Docker
 2. Docker Compose
-3. Local container image of https://github.com/ChronoSAEIV/GTFSloader
 
-## Run serviceoffer container alone
-
-`docker build . -t serviceoffer`
-
-`docker run -p 4000:4000 serviceoffer`
-
-### Test single container
-
-<http://localhost:4000>
-
-## Run serviceoffer completly
-
-`docker-compose build`
+## Run serviceoffer
 
 `docker-compose up -d`
 
@@ -27,41 +18,39 @@
 
 ### Test app
 
+GraphQL query console: <http://localhost:4000>
+
 MongoDB admin: <http://localhost:8082/>
 
 Connection URI: mongodb://mongo:27017/gtfs
 
+Query available agencies
 ```
 query {
-  test_stl: routes(agency_key: "rtl_gtfs", route_id: "889") {
-    route_id
-    route_short_name
-    route_text_color
-    route_long_name
-  }
-  test_exo: routes(agency_key: "exo_gtfs", route_id: "6") {
-    route_text_color
-    route_long_name
-  }
-  test_stm: routes(agency_key: "stm_gtfs", route_id: "445") {
-    route_id
-    route_short_name
+  agencies {
+    agency_key
   }
 }
-
 ```
 
+Query RTL specific data
 ```
 query {
-  routes(agency_key: "exo_gtfs") {
-    route_long_name
-    trips {
-      trip_id
-      trip_headsign
-      stop_times {
-        stop_id
+  agencies(agency_key: "rtl_gtfs") {
+    routes(route_id: "889") {
+      route_long_name
+      trips(direction_id: "1") {
+        trip_id
       }
     }
   }
 }
+```
+#### Query from HTTP request (curl)
+
+```
+curl --request POST \
+  --url http://localhost:4000/ \
+  --header 'content-type: application/json' \
+  --data '{"query":"{\n  agencies {\n    agency_key\n  }\n}\n"}'
 ```
