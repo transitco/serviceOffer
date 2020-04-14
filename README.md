@@ -46,3 +46,11 @@ query {
   }
 }
 ```
+#### Query from HTTP request (curl)
+
+```
+curl --request POST \
+  --url http://localhost:4000/ \
+  --header 'content-type: application/json' \
+  --data '{"query":"{\n  agencies {\n    agency_key\n  }\n}\n"}'
+```
