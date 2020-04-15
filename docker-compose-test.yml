@@ -16,36 +16,18 @@ services:
 
   exogtfsloader:
     container_name: exogtfsloader
-    build: https://github.com/transitco/GTFSloader.git
+    build: https://github.com/transtico/GTFSloader.git
     restart: always
     volumes:
-      - ./gtfs/exo_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+      - ./test/exo_citso_gtsf_config_test.json:/usr/src/app/gtfsloader/gtfs/config.json
     links:
       - mongo
-
-  rtlgtfsloader:
-    container_name: rtlgtfsloader
-    build: https://github.com/transitco/GTFSloader.git
-    restart: always
-    volumes:
-      - ./gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
-    links:
-      - mongo
-      
-#  stmgtfsloader:
-#    container_name: stmgtfsloader
-#    build: https://github.com/transitco/GTFSloader.git
-#    restart: always
-#    volumes:
-#      - ./gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
-#    links:
-#      - mongo
 
   mongo:
     container_name: mongo
     image: mongo
     volumes:
-      - data:/data/db
+      - ./data_test:/data/db
     ports:
       - "27017:27017"
 
