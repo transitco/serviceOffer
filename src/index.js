@@ -1,6 +1,9 @@
 const {GraphQLServer} = require('graphql-yoga');
 const mongoose = require('mongoose');
-const resolvers = require('./graphql/resolvers/resolvers');
+const queries_resolvers = require('./graphql/resolvers/queries.resolvers')
+const mutations_resolvers = require('./graphql/resolvers/mutations.resolvers')
+
+const resolvers = [queries_resolvers, mutations_resolvers];
 
 mongoose.connect('mongodb://mongo:27017/gtfs',
     {
