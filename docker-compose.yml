@@ -40,6 +40,19 @@ services:
     links:
       - mongo
 
+  stlgtfsloader:
+    container_name: stlgtfsloader
+    image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
+    restart: always
+    volumes:
+      - ./src/gtfs/stl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+    ports:
+      - "3002:3000"
+    environment:
+    - AGENCY=rtl
+    links:
+      - mongo
+
   #stmgtfsloader:
   #  container_name: stmgtfsloader
   #  image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
@@ -47,7 +60,7 @@ services:
   #  volumes:
   #    - ./src/gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
   #  ports:
-  #    - "3002:3000"
+  #    - "3003:3000"
   #  environment:
   #  - AGENCY=stm
   #  links:
