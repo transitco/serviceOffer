@@ -1,6 +1,6 @@
 var gtfs = require('gtfs');
 
-const resolvers = {
+const mutations_resolvers = {
   Query: {
     agencies: async (parent, args, ctx, info) => {
       const fetchedagencies = await gtfs.getAgencies();
@@ -166,4 +166,4 @@ const resolvers = {
   }
 }
 
-module.exports = resolvers
+module.exports = mutations_resolvers
