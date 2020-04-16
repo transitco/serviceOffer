@@ -54,3 +54,7 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{"query":"{\n  agencies {\n    agency_key\n  }\n}\n"}'
 ```
+# Contribute
+
+You are welcome to contribute either directly via GitHub Pull Request or via Gerrit:
+<https://review.gerrithub.io/q/project:transitco/serviceOffer+status:open>
