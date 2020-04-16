@@ -59,9 +59,10 @@ curl --request POST \
 You are welcome to contribute either directly via GitHub Pull Request or via Gerrit:
 <https://review.gerrithub.io/q/project:transitco/serviceOffer+status:open>
 
-1. Modify your files
-2. git add .
-3. git commit -m "message"
-4. git push ssh://sshusername@review.gerrithub.io:29418/transitco/serviceOffer HEAD:refs/for/master%topic=whatever
+1. ```git clone "ssh://username@review.gerrithub.io:29418/transitco/serviceOffer" serviceOffer && scp -p -P 29418 username@review.gerrithub.io:hooks/commit-msg "serviceOffer/.git/hooks/" ```
+2. Modify your files
+3. git add .
+4. git commit -m "message"
+5. git push ssh://username@review.gerrithub.io:29418/transitco/serviceOffer HEAD:refs/for/master%topic=whatever
 
 Then use git commit --amend to modify the proposed change.
