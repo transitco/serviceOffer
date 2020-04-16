@@ -54,3 +54,14 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{"query":"{\n  agencies {\n    agency_key\n  }\n}\n"}'
 ```
+# Contribute
+
+You are welcome to contribute either directly via GitHub Pull Request or via Gerrit:
+<https://review.gerrithub.io/q/project:transitco/serviceOffer+status:open>
+
+1. Modify your files
+2. git add .
+3. git commit -m "message"
+4. git push ssh://sshusername@review.gerrithub.io:29418/transitco/serviceOffer HEAD:refs/for/master%topic=whatever
+
+Then use git commit --amend to modify the proposed change.
