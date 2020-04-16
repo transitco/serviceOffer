@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "dev": "nodemon index.js",
     "prod": "node index.js"
   },
@@ -16,5 +16,8 @@
     "mongoose": "^5.9.4",
     "nodemon": "^2.0.2",
     "gtfs": "^1.9.3"
+  },
+  "devDependencies": {
+  "jest": "^25.3.0"
   }
 }
