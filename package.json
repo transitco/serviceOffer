@@ -14,7 +14,7 @@
     "express": "^4.17.1",
     "graphql-yoga": "^1.18.3",
     "gtfs": "^1.9.3",
-    "mongoose": "^5.9.4",
+    "mongoose": "^5.9.9",
     "nodemon": "^2.0.3",
     "package-lock.json": "^1.0.0"
   },
