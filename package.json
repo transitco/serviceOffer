@@ -15,7 +15,7 @@
     "graphql-yoga": "^1.18.3",
     "gtfs": "^1.9.3",
     "mongoose": "^5.9.4",
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.3",
     "package-lock.json": "^1.0.0"
   },
   "devDependencies": {
