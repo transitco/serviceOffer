@@ -5,6 +5,7 @@ COPY ./package.json /usr/src/app/serviceoffer
 FROM baseline AS tester
 RUN npm install
 COPY . /usr/src/app/serviceoffer
+RUN npm run lint
 RUN npm run test
 
 FROM baseline AS production
