@@ -59,10 +59,22 @@ curl --request POST \
 You are welcome to contribute either directly via GitHub Pull Request or via Gerrit:
 <https://review.gerrithub.io/q/project:transitco/serviceOffer+status:open>
 
-1. ```git clone "ssh://username@review.gerrithub.io:29418/transitco/serviceOffer" serviceOffer && scp -p -P 29418 username@review.gerrithub.io:hooks/commit-msg "serviceOffer/.git/hooks/" ```
+Intial setup to use Gerrit:
+```pip install git-review```
+
+Clone a gerrit project:
+```git clone "ssh://username@review.gerrithub.io:29418/transitco/serviceOffer" serviceOffer && scp -p -P 29418 username@review.gerrithub.io:hooks/commit-msg "serviceOffer/.git/hooks/" ```
+
+Create a change:
+1. git checkout -b BRANCH_NAME
 2. Modify your files
 3. git add .
 4. git commit -m "message"
-5. git push ssh://username@review.gerrithub.io:29418/transitco/serviceOffer HEAD:refs/for/master%topic=whatever
+5. git review
 
-Then use git commit --amend to modify the proposed change.
+Modify an existing change:
+1. git review -d CHANGE_ID
+2. Modify your files
+3. git add .
+4. git commit --amend
+5. git review
