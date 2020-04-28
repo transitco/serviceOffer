@@ -10,6 +10,6 @@ RUN npm run test
 
 FROM baseline AS production
 RUN npm install package-lock.json -- production
-COPY ./src/ /usr/src/app/serviceoffer
+COPY ./src/ /usr/src/app/serviceoffer/src/
 EXPOSE 4000
 CMD ["npm", "run", "prod"]

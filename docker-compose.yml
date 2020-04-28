@@ -16,30 +16,42 @@ services:
 
   exogtfsloader:
     container_name: exogtfsloader
-    build: https://github.com/transitco/GTFSloader.git
+    image: cptcloud/gtfsloader
     restart: always
     volumes:
-      - ./gtfs/exo_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+      - ./src/gtfs/exo_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+    ports:
+      - "3000:3000"
+    environment:
+    - AGENCY=exo
     links:
       - mongo
 
   rtlgtfsloader:
     container_name: rtlgtfsloader
-    build: https://github.com/transitco/GTFSloader.git
+    image: cptcloud/gtfsloader
     restart: always
     volumes:
-      - ./gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+      - ./src/gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+    ports:
+      - "3001:3000"
+    environment:
+    - AGENCY=rtl
     links:
       - mongo
-      
-#  stmgtfsloader:
-#    container_name: stmgtfsloader
-#    build: https://github.com/transitco/GTFSloader.git
-#    restart: always
-#    volumes:
-#      - ./gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
-#    links:
-#      - mongo
+
+  #stmgtfsloader:
+  #  container_name: stmgtfsloader
+  #  build: https://github.com/transitco/gtfsloader.git
+  #  restart: always
+  #  volumes:
+  #    - ./src/gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+  #  ports:
+  #    - "3002:3000"
+  #  environment:
+  #  - AGENCY=stm
+  #  links:
+  #    - mongo
 
   mongo:
     container_name: mongo

@@ -2,20 +2,24 @@
   "name": "serviceoffer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest --coverage",
     "lint": "npx eslint ./",
-    "dev": "nodemon index.js",
-    "prod": "node index.js"
+    "dev": "nodemon src/index.js",
+    "prod": "node src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "graphql-yoga": "^1.18.3",
+<<<<<<< HEAD
     "gtfs": "^1.10.0",
     "mongoose": "^5.9.10",
+=======
+    "gtfs": "^1.1.10",
+    "mongoose": "^5.9.9",
+>>>>>>> 143c2ad... Export GTFS
     "nodemon": "^2.0.3",
     "package-lock.json": "^1.0.0",
     "eslint-config-google": "^0.14.0"
