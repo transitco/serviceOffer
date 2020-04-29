@@ -1,7 +1,6 @@
 # ServiceOffer
 
-Retrieve GTFS data with a GraphQL query (nodejs graphql-yoga) from a database (npm gtfs + mongoose + MongoDB)
-
+Retrieve GTFS data with a GraphQL query (nodejs graphql-yoga) from a database (npm gtfs + mongoose + MongoDB)  
 Use case is made with Montreal public transit agencies: exo, RTL and STM
 
 ## Required
@@ -11,8 +10,8 @@ Use case is made with Montreal public transit agencies: exo, RTL and STM
 
 ## Run serviceoffer
 
-`docker login docker.pkg.github.com`
-Use your Github username and your Github developer token as password.
+`docker login docker.pkg.github.com`  
+Use your Github username and your Github developer token as password.  
 `docker-compose up -d`
 
 ### Rebuild and up only serviceoffer container
@@ -21,10 +20,8 @@ Use your Github username and your Github developer token as password.
 
 ### Test app
 
-GraphQL query console: <http://localhost:4000>
-
-MongoDB admin: <http://localhost:8082/>
-
+GraphQL query console: <http://localhost:4000>  
+MongoDB admin: <http://localhost:8082/>  
 Connection URI: mongodb://mongo:27017/gtfs
 
 * Import GTFS from a zipfile to the database
@@ -85,7 +82,7 @@ curl --request POST \
 You are welcome to contribute either directly via GitHub Pull Request or via Gerrit:
 <https://review.gerrithub.io/q/project:transitco/serviceOffer+status:open>
 
-Intial setup to use Gerrit:
+Intial setup to use Gerrit:  
 ```pip install git-review```
 
 Create a change:
