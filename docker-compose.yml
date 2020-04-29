@@ -16,7 +16,7 @@ services:
 
   exogtfsloader:
     container_name: exogtfsloader
-    image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
+    image: cptcloud/gtfsloader
     restart: always
     volumes:
       - ./src/gtfs/exo_config.json:/usr/src/app/gtfsloader/gtfs/config.json
@@ -29,7 +29,7 @@ services:
 
   rtlgtfsloader:
     container_name: rtlgtfsloader
-    image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
+    image: cptcloud/gtfsloader
     restart: always
     volumes:
       - ./src/gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
@@ -42,7 +42,7 @@ services:
 
   #stmgtfsloader:
   #  container_name: stmgtfsloader
-  #  image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
+  #  build: https://github.com/transitco/gtfsloader.git
   #  restart: always
   #  volumes:
   #    - ./src/gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
