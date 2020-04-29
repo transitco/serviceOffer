@@ -11,6 +11,8 @@ Use case is made with Montreal public transit agencies: exo, RTL and STM
 
 ## Run serviceoffer
 
+`docker login docker.pkg.github.com`
+Use your Github username and your Github developer token as password.
 `docker-compose up -d`
 
 ### Rebuild and up only serviceoffer container
