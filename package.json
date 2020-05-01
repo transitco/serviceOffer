@@ -14,7 +14,7 @@
   "dependencies": {
     "graphql-yoga": "^1.18.3",
     "gtfs": "^1.1.10",
-    "mongoose": "^5.9.10",
+    "mongoose": "^5.9.11",
     "nodemon": "^2.0.3",
     "package-lock.json": "^1.0.0",
     "eslint-config-google": "^0.14.0"
