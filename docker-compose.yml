@@ -21,8 +21,6 @@ services:
       - ./src/gtfs/exo_config.json:/usr/src/app/gtfsloader/gtfs/config.json
     ports:
       - "3000:3000"
-    environment:
-    - AGENCY=exo
     links:
       - mongo
   rtlgtfsloader:
@@ -33,8 +31,17 @@ services:
       - ./src/gtfs/rtl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
     ports:
       - "3001:3000"
-    environment:
-    - AGENCY=rtl
+    links:
+      - mongo
+
+  stlgtfsloader:
+    container_name: stlgtfsloader
+    image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
+    restart: always
+    volumes:
+      - ./src/gtfs/stl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+    ports:
+      - "3002:3000"
     links:
       - mongo
   stlgtfsloader:
@@ -61,6 +68,10 @@ services:
   #  - AGENCY=stm
   #  links:
   #    - mongo
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 4bfe24e... First mutation
   mongo:
     container_name: mongo
     image: mongo
@@ -80,5 +91,6 @@ services:
       - DB_PORT=27017
     links:
       - mongo
+      
 volumes: 
   data:
