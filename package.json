@@ -1,13 +1,17 @@
 {
   "name": "serviceoffer",
   "version": "1.0.0",
-  "description": "",
+  "description": "GraphQL based GTFS planned service offer management API",
   "main": "src/index.js",
   "scripts": {
     "test": "jest --coverage",
     "lint": "npx eslint ./",
     "dev": "nodemon src/index.js",
     "prod": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/transitco/serviceOffer.git"
   },
   "author": "",
   "license": "ISC",

@@ -68,6 +68,16 @@ query {
 }
 ```
 
+Modify agency name
+
+```bash
+mutation {
+  agency(agency_key: "rtl_gtfs", agency_new_name: "ralph") {
+    agency_name
+  }
+}
+```
+
 #### Query from HTTP request (curl)
 
 ```bash

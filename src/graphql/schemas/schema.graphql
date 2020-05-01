@@ -6,6 +6,10 @@ type Query {
   stops(agency_key: [String], route_id: [String], trip_id: [String], stop_times: [String]): [Stop]
 }
 
+type Mutation {
+  agency(agency_key: String, agency_new_name: String): Agency
+}
+
 type Feed_info {
   feed_publisher_name: String
   feed_publisher_url: String
