@@ -1,32 +1,33 @@
-const gtfs = require('gtfs');
 
-const resolvers = {
+/* eslint-disable no-unused-vars */
+var gtfs = require('gtfs');
+const queries_resolvers = {
   Query: {
-    agencies: async (_parent, _args, _ctx, _info) => {
+    agencies: async (parent, args, ctx, info) => {
       const fetchedagencies = await gtfs.getAgencies();
       console.log(fetchedagencies);
       return fetchedagencies;
     },
-    routes: async (_parent, args, _ctx, _info) => {
+    routes: async (parent, args, ctx, info) => {
       const fetchedroutes = await gtfs.getRoutes(args);
       console.log(fetchedroutes);
       return fetchedroutes;
-    },
-    trips: async (_parent, args, _ctx, _info) => {
+      },
+    trips: async (parent, args, ctx, info) => {
       const fetchedtrips = await gtfs.getTrips(args);
       console.log(fetchedtrips);
       return fetchedtrips;
-    },
-    stopTimes: async (_parent, args, _ctx, _info) => {
+      },
+    stopTimes: async (parent, args, ctx, info) => {
       const fetchedstoptimes = await gtfs.getRoutes(args);
       console.log(fetchedstoptimes);
       return fetchedstoptimes;
-    },
-    stops: async (_parent, args, _ctx, _info) => {
+      },
+    stops: async (parent, args, ctx, info) => {
       const fetchedstops = await gtfs.getStops(args);
       console.log(fetchedstops);
       return fetchedstops;
-    },
+      },
   },
   Agency: {
     agency_key: (parent) => parent.agency_key,
@@ -36,29 +37,29 @@ const resolvers = {
     agency_timezone: (parent) => parent.agency_timezone,
     agency_lang: (parent) => parent.agency_lang,
     agency_phone: (parent) => parent.agency_phone,
-    routes: async (parent, _args, _ctx, _info) => {
+    routes: async (parent, args, ctx, info) => {
       const fetchedroutes = await gtfs.getRoutes({
-        agency_key: parent.agency_key,
+        agency_key: parent.agency_key
       });
       console.log(fetchedroutes);
       return fetchedroutes;
+      }
     },
-  },
   Route: {
     route_id: (parent) => parent.route_id,
     agency_id: (parent) => parent.agency_id,
     route_short_name: (parent) => parent.route_short_name,
     route_long_name: (parent) => parent.route_long_name,
     route_desc: (parent) => parent.route_desc,
-    route_type: (parent) => parent.route_type,
+    route_type:  (parent) => parent.route_type,
     route_url: (parent) => parent.route_url,
     route_color: (parent) => parent.route_color,
     route_text_color: (parent) => parent.route_text_color,
     route_sort_order: (parent) => parent.route_sort_order,
-    trips: async (parent, _args, _ctx, _info) => {
+    trips: async (parent, args, ctx, info) => {
       const fetchedtrips = await gtfs.getTrips({
         agency_key: parent.agency_key,
-        route_id: parent.route_id,
+        route_id: parent.route_id
       });
       console.log(fetchedtrips);
       return fetchedtrips;
@@ -75,7 +76,7 @@ const resolvers = {
     shape_id: (parent) => parent.shape_id,
     wheelchair_accessible: (parent) => parent.wheelchair_accessible,
     bikes_allowed: (parent) => parent.bikes_allowed,
-    shapes: async (parent, _args, _ctx, _info) => {
+    shapes: async (parent, args, ctx, info) => {
       const fetchedshapes = await gtfs.getShapes({
         agency_key: parent.agency_key,
         route_id: parent.route_id,
@@ -86,7 +87,7 @@ const resolvers = {
       console.log(fetchedshapes);
       return fetchedshapes;
     },
-    stop_times: async (parent, _args, _ctx, _info) => {
+    stop_times: async (parent, args, ctx, info) => {
       const fetchedstoptimes = await gtfs.getStoptimes({
         agency_key: parent.agency_key,
         route_id: parent.route_id,
@@ -116,7 +117,7 @@ const resolvers = {
     drop_off_type: (parent) => parent.drop_off_type,
     shape_dist_traveled: (parent) => parent.shape_dist_traveled,
     timepoint: (parent) => parent.timepoint,
-    stops: async (parent, _args, _ctx, _info) => {
+    stops: async (parent, args, ctx, info) => {
       const fetchedstops = await gtfs.getStops({
         agency_key: parent.agency_key,
         route_id: parent.route_id,
@@ -142,7 +143,7 @@ const resolvers = {
     wheelchair_boarding: (parent) => parent.wheelchair_boarding,
     level_id: (parent) => parent.level_id,
     platform_code: (parent) => parent.platform_code,
-    transfers: async (parent, _args, _ctx, _info) => {
+    transfers: async (parent, args, ctx, info) => {
       const fetchedtransfers = await gtfs.getTransfers({
         agency_key: parent.agency_key,
         from_stop_id: parent.stop_id,
@@ -162,8 +163,7 @@ const resolvers = {
     start_time: (parent) => parent.start_time,
     end_time: (parent) => parent.end_time,
     headway_secs: (parent) => parent.headway_secs,
-    exact_times: (parent) => parent.exact_times,
-  },
-};
-
-module.exports = resolvers;
+    exact_times: (parent) => parent.exact_times,  
+  }
+}
+module.exports = queries_resolvers

@@ -1,0 +1,13 @@
+{
+    "mongoUrl": "mongodb://mongo:27017/gtfs",
+    "agencies": [
+      {
+        "agency_key": "stl_gtfs",
+        "url": "http://www.stl.laval.qc.ca/opendata/GTF_STL.zip",
+        "exclude": [
+          "shapes"
+        ]
+      }
+    ]
+  }
+  

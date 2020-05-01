@@ -1,5 +1,5 @@
-version: "2"
 
+version: "2"
 services:
   serviceoffer:
     container_name: serviceoffer
@@ -13,7 +13,6 @@ services:
       - "4000:4000"
     links:
       - mongo
-
   exogtfsloader:
     container_name: exogtfsloader
     image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
@@ -26,7 +25,6 @@ services:
     - AGENCY=exo
     links:
       - mongo
-
   rtlgtfsloader:
     container_name: rtlgtfsloader
     image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
@@ -39,7 +37,18 @@ services:
     - AGENCY=rtl
     links:
       - mongo
-
+  stlgtfsloader:
+    container_name: stlgtfsloader
+    image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
+    restart: always
+    volumes:
+      - ./src/gtfs/stl_config.json:/usr/src/app/gtfsloader/gtfs/config.json
+    ports:
+      - "3002:3000"
+    environment:
+    - AGENCY=rtl
+    links:
+      - mongo
   #stmgtfsloader:
   #  container_name: stmgtfsloader
   #  image: docker.pkg.github.com/transitco/gtfsloader/gtfsloader:latest
@@ -47,12 +56,11 @@ services:
   #  volumes:
   #    - ./src/gtfs/stm_config.json:/usr/src/app/gtfsloader/gtfs/config.json
   #  ports:
-  #    - "3002:3000"
+  #    - "3003:3000"
   #  environment:
   #  - AGENCY=stm
   #  links:
   #    - mongo
-
   mongo:
     container_name: mongo
     image: mongo
@@ -60,7 +68,6 @@ services:
       - data:/data/db
     ports:
       - "27017:27017"
-
   admin-mongo:
     container_name: adminMongo
     image: 0x59/admin-mongo:latest
