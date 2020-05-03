@@ -72,8 +72,17 @@ Modify agency name
 
 ```bash
 mutation {
-  agency(agency_key: "rtl_gtfs", agency_new_name: "ralph") {
+  agency(agency_key: "rtl_gtfs", agency_name: "ralph") {
     agency_name
+  }
+}
+```
+
+Modify stop arrival time to 05:32:56
+```bash
+mutation {
+  stopTime(agency_key:"rtl_gtfs", trip_id:"889_1_A_F2_8833_24_40", arrival_time:"05:32:56"){
+    arrival_time
   }
 }
 ```

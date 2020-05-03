@@ -1,5 +1,6 @@
 type Query {
   agencies(agency_key: [String], agency_timezone: [String]): [Agency]
+  feeds_info(agency_key: [String]): [Feed_info]
   routes(agency_key: [String], route_id: [String], stop_id: [String]): [Route]
   trips(agency_key: [String], route_id: [String], direction_id: [String], service_id: [String]): [Trip]
   stopTimes(agency_key: [String], route_id: [String], trip_id: [String], stop_id: [String], direction_id: [String], service_id: [String]): [StopTime]
@@ -7,7 +8,14 @@ type Query {
 }
 
 type Mutation {
-  agency(agency_key: String, agency_new_name: String): Agency
+  feed_info(agency_key: String, feed_publisher_name: String, feed_publisher_url: String, feed_lang: String, feed_start_date: String, feed_end_date: String,feed_version: String, feed_contact_email: String, feed_contact_url: String): Feed_info
+  agency(agency_key: String, agency_name: String, agency_url: String, agency_timezone: String, agency_lang: String, agency_phone: String): Agency
+  route(agency_key: String, route_id: String, agency_id: String, route_short_name: String, route_long_name: String, route_desc: String, route_type: String, route_url: String, route_color: String, route_text_color: String, route_sort_order: Int): Route
+  shape(agency_key: String, shape_id: Int, shape_pt_lat: Int, shape_pt_lon: String, shape_pt_sequence: Int, shape_dist_traveled: Int): Shape
+  stopTime(agency_key: String, trip_id: String, arrival_time: String, departure_time: String, stop_id: String, stop_sequence: Int, stop_headsign: String, pickup_type: Int, drop_off_type: Int, shape_dist_traveled: Float, timepoint: Int): StopTime
+  stop(agency_key: String, stop_id: String, stop_code: String, stop_name: String, stop_desc: String, stop_lat: Float, stop_lon: Float, zone_id: String, stop_url: String, location_type: Int, parent_station: Int, stop_timezone: String, wheelchair_boarding: Int, level_id: Int, platform_code: String): Stop
+  transfer(agency_key: String, from_stop_id: Int, to_stop_id: Int, transfer_type: String, min_transfer_time: Int): Transfer
+  frequency(agency_key: String, trip_id: Int, start_time: Int, end_time: String, headway_secs: Int, exact_times: Int): Frequency
 }
 
 type Feed_info {
@@ -29,7 +37,7 @@ type Agency {
   agency_timezone: String
   agency_lang: [String]
   agency_phone: [String]
-  routes: [Route]
+  routes(agency_key: [String], route_id: [String], stop_id: [String]): [Route]
 }
 
 type Route {
@@ -43,7 +51,7 @@ type Route {
   route_color: String
   route_text_color: String
   route_sort_order: Int
-  trips: [Trip]
+  trips(agency_key: [String], trip_id: [String], route_id: [String], direction_id: [String], service_id: [String]): [Trip]
 }
 
 type Trip {
@@ -58,7 +66,7 @@ type Trip {
   wheelchair_accessible: Int
   bikes_allowed: Int
   shapes(agency_key: [String],route_id: [String], trip_id: [String], direction_id: [String], service_id: [String]): [Shape]
-  stop_times: [StopTime]
+  stop_times(agency_key: [String], route_id: [String], trip_id: [String], stop_id: [String], direction_id: [String], service_id: [String]): [StopTime]
   frequencies: [Frequency]
 }
 
@@ -72,8 +80,8 @@ type Shape {
 
 type StopTime {
   trip_id: Int
-  arrival_time: Int
-  departure_time: Int
+  arrival_time: String
+  departure_time: String
   stop_id: String
   stop_sequence: Int
   stop_headsign: String
@@ -81,7 +89,7 @@ type StopTime {
   drop_off_type: Int
   shape_dist_traveled: Float
   timepoint: Int
-  stops: [Stop]
+  stops(agency_key: [String], route_id: [String], trip_id: [String], stop_times: [String]): [Stop]
 }
 
 type Stop {
