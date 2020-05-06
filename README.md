@@ -91,7 +91,7 @@ mutation {
 
 ```bash
 curl --request POST \
-  --url http://localhost:4000/ \
+  --url http://localhost:4000/graphql \
   --header 'content-type: application/json' \
   --data '{"query":"{\n  agencies {\n    agency_key\n  }\n}\n"}'
 ```
