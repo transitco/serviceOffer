@@ -20,7 +20,7 @@
     "graphql-import": "^1.0.2",
     "gtfs": "^1.10.1",
     "mongoose": "^5.9.14",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
