@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-express": "^2.14.2",
+    "apollo-server-express": "^2.14.4",
     "graphql-import": "^1.0.2",
     "gtfs": "^1.10.1",
     "mongoose": "^5.9.17",
