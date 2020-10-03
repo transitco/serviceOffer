@@ -18,7 +18,7 @@
   "dependencies": {
     "apollo-server-express": "^2.18.1",
     "graphql-import": "^1.0.2",
-    "gtfs": "^1.10.2",
+    "gtfs": "^2.0.5",
     "mongoose": "^5.10.7",
     "nodemon": "^2.0.4"
   },
